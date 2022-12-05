@@ -6,7 +6,7 @@ use rayon::prelude::{IndexedParallelIterator, IntoParallelRefIterator, ParallelI
 use crate::chromosome::Chromosome;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Board<'ch>(pub &'ch Chromosome);
+pub struct Board<'ch>(&'ch Chromosome);
 
 impl<'ch> PartialOrd for Board<'ch> {
     #[inline]
