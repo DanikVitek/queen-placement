@@ -9,6 +9,7 @@ edition = "2021"
 lto = true
 opt-level = 3
 codegen-units = 1
+strip = true
 
 [dependencies]
 anyhow = "1.0"
