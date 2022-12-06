@@ -1,8 +1,6 @@
-use std::fmt;
-use std::num::NonZeroUsize;
-use std::str::FromStr;
-
 use clap::{builder::PossibleValue, Parser, ValueEnum};
+use std::num::NonZeroU16;
+use std::{fmt, num::NonZeroUsize, str::FromStr};
 
 use crate::selection::{Probability, SelectionStrategy};
 
@@ -10,8 +8,8 @@ use crate::selection::{Probability, SelectionStrategy};
 #[command(author, about)]
 pub struct Config {
     /// Size of the chess board
-    #[arg(short, long, default_value_t = 8)]
-    pub board_size: u16,
+    #[arg(short, long, default_value_t = NonZeroU16::try_from(8).unwrap())]
+    pub board_size: NonZeroU16,
 
     /// Size of the population in one generation
     #[arg(short, long, default_value_t = NonZeroUsize::try_from(100).unwrap())]

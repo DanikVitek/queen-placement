@@ -27,7 +27,12 @@ fn main() {
         selection_strategy,
     } = Config::parse();
 
-    let mut generation = Chromosome::create_generation(board_size, generation_size.get());
+    if generation_size.get() < 2 {
+        println!("Generation size os too small");
+        return;
+    }
+
+    let mut generation = Chromosome::create_generation(board_size.get(), generation_size.get());
     let mut generation_count: u32 = 1;
     print_max_fitness(&generation, &generation_count);
 

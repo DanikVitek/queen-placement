@@ -22,20 +22,6 @@ impl<'ch> Ord for Board<'ch> {
     }
 }
 
-impl<'ch> From<&'ch Chromosome> for Board<'ch> {
-    #[inline]
-    fn from(chromosome: &'ch Chromosome) -> Self {
-        Self(chromosome)
-    }
-}
-
-impl<'ch> From<Board<'ch>> for &'ch Chromosome {
-    #[inline]
-    fn from(b: Board<'ch>) -> Self {
-        b.0
-    }
-}
-
 impl<'ch> Board<'ch> {
     /// Amount of chess pieces that have been beaten
     pub fn beats_count(&self) -> u16 {
@@ -57,6 +43,20 @@ impl<'ch> Board<'ch> {
     #[inline]
     pub fn fitness(&self) -> f32 {
         1.0 / (self.beats_count() as f32 + 1.0)
+    }
+}
+
+impl<'ch> From<&'ch Chromosome> for Board<'ch> {
+    #[inline]
+    fn from(chromosome: &'ch Chromosome) -> Self {
+        Self(chromosome)
+    }
+}
+
+impl<'ch> From<Board<'ch>> for &'ch Chromosome {
+    #[inline]
+    fn from(b: Board<'ch>) -> Self {
+        b.0
     }
 }
 
